@@ -7,8 +7,7 @@
 <body>
 <template id="login-template">
 <div>    
- <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
       <div class="form-group">
       <input type="email" name="email" id="email">
       <input type="password" name="password" id="password">
@@ -18,7 +17,14 @@
 
 </template>
 <div id="app">
-
+<template id="main-contenainer-template">
+    <div><button v-on:click="logoutAttempt">Logout</button><select v-model="currentFlightIndex" >
+        <option v-for="(flight,index) in flightList.data.bookings" v-bind:value="index">{{flight.flightNo}}</option>
+        </select>
+        <flight-info :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-info>
+        <flight-msg :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-msg>
+    </div>
+</template>
  <!--  <app-nav>
   </app-nav>
   <main-container>

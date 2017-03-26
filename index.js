@@ -47,12 +47,7 @@ var mainContainer=Vue.component('left-sidebar',{
     		router.go('/login')
     	}  
   	},
-	template:`<div><button v-on:click="logoutAttempt">Logout</button><select v-model="currentFlightIndex" >
-  		<option v-for="(flight,index) in flightList.data.bookings" v-bind:value="index">{{flight.flightNo}}</option>
-		</select>
-		<flight-info :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-info>
-		<flight-msg :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-msg>
-		</div>`
+	template:"#main-contenainer-template"
 });
 var flightMessages=Vue.component(`flight-msg`,{
 	props:['flights','currentFlightIndex'],
