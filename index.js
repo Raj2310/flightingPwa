@@ -25,7 +25,7 @@ var mainContainer=Vue.component('left-sidebar',{
   	},
   	methods: {
     	fetchItem() {
-	    	console.log("Local Storage",localStorage.authKey);
+	    	//console.log("Local Storage",localStorage.authKey);
 	    	if (localStorage.authKey) {
 	    		 var self=this;
 				axios.get('http://krkfans.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
@@ -38,11 +38,12 @@ var mainContainer=Vue.component('left-sidebar',{
 			    	console.log(error);
 				});
 	    	} else {
-	    		router.go('/login')
+	    		//router.go('/login')
 	    	}
     	},
     	logoutAttempt(){
-    		localStorage.removeItem("authkey");
+    		localStorage.removeItem("authKey");
+    		console.log("After deletion",localStorage.authKey);
     		router.go('/login')
     	}  
   	},
@@ -66,17 +67,23 @@ var flightInfo=Vue.component(`flight-info`,{
 
 const Login = { 
 	template: '#login-template',
+	created() {
+   		this.checkLogin()
+  	},
 	methods: {
     	loginAttempt: function () {
-      		const email=document.getElementById("email").value;
-      		const password=document.getElementById("password").value;
-      		$.post("https://krkfans.herokuapp.com/api/login", {email: 'dey7.kol@gmail.com',
-			    	password: 'abcd1234'}, function(result){
-        		if(result){
+      		const email=$("#email").val();
+      		const password=$("#password").val();
+      		$.post("https://krkfans.herokuapp.com/api/login", {email:email,
+			    	password: password}, function(result){
+        		if(result.status){
         			localStorage.setItem("authKey", result.authKey);
+        			router.push('/dashboard')
         		}else{	
+        			alert("Wrong email/password");
         		}
     		});
+
       		/*axios({
       			method:'post',
       			url:'https://krkfans.herokuapp.com/api/login',
@@ -96,6 +103,15 @@ const Login = {
 			    console.log(error);
 			  });*/
       		//console.log(email+" "+password);
+    	},
+    	checkLogin:function(){
+    		if (localStorage.authKey) {
+    			console.log("localStorage.authKey",localStorage.authKey);
+    			router.push('/dashboard');
+    		}else{
+    			console.log("No")
+    			//router.push('/dashboard');
+    		}
     	}
   	} 
 }
