@@ -1,0 +1,39 @@
+body{
+	background-image: url("airportreg.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+.font-style{
+	width: 500px;
+	height: 700px;
+	text-align: center;
+	background-color:rgba(52,73,94,0.7);
+	margin: 0 auto;
+	margin-top: 150px;
+}
+.font-style img{ 
+	width:120px;
+	height:120px;
+	margin-top:-60px;
+	margin-bottom:30px;
+}
+input[type="text"],[type="password"]{
+	width: 350px;
+	height: 40px;
+	margin-bottom: 20px;
+	font-size: 18px;
+	padding-left: 30px;
+	background-color: #fff;
+}
+
+input[type="submit"]{
+	cursor: pointer;
+	color:#fff;
+	background-color: #2ECC71;
+	
+}
+label
+{
+	font-size:15px;
+	color: #fff;
+}

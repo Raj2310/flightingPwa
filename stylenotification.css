@@ -1,0 +1,39 @@
+body{
+	background-color: #b3ffb3;
+}
+
+h2{
+	margin-bottom: 20px;
+	padding-left:20px;
+}
+
+.buttons{
+	padding-left:20px;
+	padding-top:10px;
+	padding-right:10px;
+	border: 3px solid red;
+	height: 400px;
+}
+
+.button{
+	width: 100%;
+	background-color: #0073e6;
+	color: white;
+	font-size:30px;
+}
+
+.cont{
+	border: 3px solid green;
+	height:490px;
+	background-image: url("bg2.jpg");
+}
+
+p span{
+	border: 2px solid green;
+	background-color: #fff;
+	padding:5px 5px 5px 5px;
+}
+
+.messagebody{
+	padding: 20px 20px 20px 20px;
+}

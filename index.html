@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flighting</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body>
+<template id="login-template">
+<div>    
+ <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+      <div class="form-group">
+      <input type="email" name="email" id="email">
+      <input type="password" name="password" id="password">
+    <button class="btn btn-success" v-on:click="loginAttempt">Login</button>
+      </div>
+</div>
+
+</template>
+<div id="app">
+
+ <!--  <app-nav>
+  </app-nav>
+  <main-container>
+  </main-container> -->
+  <router-link to="/dashboard">Go to dashboard</router-link>
+   <router-link to="/login">Go to Login</router-link>
+  <router-view></router-view>
+</div>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="bootstrap.min.js"></script>
+<script src="axios.js"></script>
+<script type="text/javascript" src="vue.js"></script>
+<script src="vue-router.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
