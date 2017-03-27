@@ -28,7 +28,7 @@ var mainContainer=Vue.component('left-sidebar',{
 	    	//console.log("Local Storage",localStorage.authKey);
 	    	if (localStorage.authKey) {
 	    		 var self=this;
-				axios.get('http://krkfans.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
+				axios.get('https://krkfans.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
 				})
 			  	.then(function (response) {
 			  		console.log(response)
@@ -76,26 +76,6 @@ const Login = {
         			alert("Wrong email/password");
         		}
     		});
-
-      		/*axios({
-      			method:'post',
-      			url:'https://krkfans.herokuapp.com/api/login',
-			    
-			    data:{
-			    	email: 'dey7.kol@gmail.com',
-			    	password: 'abcd1234'
-			    },
-			    headers: {
-        			'Content-Type': 'application/json'
-    			}
-			  })
-			  .then(function (response) {
-			    console.log(response);
-			  })
-			  .catch(function (error) {
-			    console.log(error);
-			  });*/
-      		//console.log(email+" "+password);
     	},
     	checkLogin:function(){
     		if (localStorage.authKey) {
