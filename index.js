@@ -51,13 +51,11 @@ var mainContainer=Vue.component('left-sidebar',{
 });
 var flightMessages=Vue.component(`flight-msg`,{
 	props:['flights','currentFlightIndex'],
-	template:`<ul>
-	<li v-for="msg in flights[currentFlightIndex].msg">{{msg}}</li>
-	</ul>`
+	template:"#flight-msg-template"
 })
 var flightInfo=Vue.component(`flight-info`,{
 	props:['flights','currentFlightIndex'],
-	template:'<h2>start:{{flights[currentFlightIndex].sourceName}} end:{{flights[currentFlightIndex].destinationName}}</h2>'
+	template:"#flight-info-template"
 });
 
 const Login = { 

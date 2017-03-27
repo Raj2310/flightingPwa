@@ -111,15 +111,32 @@ body {
 <template id="mainContainer-template">
 <div>
   <app-nav :username="flightList.data.user.name"></app-nav>
-  <!--   -->
+  <select v-model="currentFlightIndex" >
+  <option v-for="(flight,index) in flightList.data.bookings" v-bind:value="index">{{flight.flightNo}}</option>
+    </select>
+    <flight-info :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-info>
+    <flight-msg :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-msg>
+  </div>
+</template>
+<template id="flight-info-template">
+  <div>
+      <h2>start:{{flights[currentFlightIndex].sourceName}} end:{{flights[currentFlightIndex].destinationName}}</h2>
+  </div>
+
+</template>
+<template id="flight-msg-template">
+  <div>
+    <ul>
+      <li v-for="msg in flights[currentFlightIndex].msg">{{msg}}</li>
+    </ul>
   </div>
 </template>
 <div id="app">
  <!--  <app-nav>
   </app-nav>
   <main-container>
-  </main-container> -->
- <!--  <router-link to="/dashboard">Go to dashboard</router-link>
+  </main-container>
+  <router-link to="/dashboard">Go to dashboard</router-link>
    <router-link to="/login">Go to Login</router-link> -->
   <router-view></router-view>
 </div>
