@@ -1,3 +1,8 @@
+function saveBookingToLocal(bookingdata){
+  localStorage.bookingdata=bookingdata;
+}
+
+
 var navbar=Vue.component('app-nav',{
     props:['username'],
   data:function(){
@@ -27,11 +32,16 @@ var mainContainer=Vue.component('left-sidebar',{
 	    	//console.log("Local Storage",localStorage.authKey);
 	    	if (localStorage.authKey) {
 	    		 var self=this;
+           if(localStorage.bookingdata){
+            console.log("now");
+            self.flightList=localStorage.bookingdata;
+           }
 				axios.get('https://krkfans.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
 				})
 			  	.then(function (response) {
 			  		console.log(response)
 			    	self.flightList=response;
+            saveBookingToLocal(response)
 				})
 			  	.catch(function (error) {
 			    	console.log(error);
@@ -119,7 +129,6 @@ const Register=Vue.component(`register`,{
     		}
     	}
 });
-
 const routes = [
   { path: '/dashboard', component: mainContainer },
   { path: '/login', component: Login },

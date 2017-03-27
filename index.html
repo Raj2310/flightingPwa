@@ -163,14 +163,6 @@ footer {
         </footer>
 
     </div>
-  <!-- <div>
-    <app-nav :username="flightList.data.user.name"></app-nav>
-    <select v-model="currentFlightIndex" >
-      <option v-for="(flight,index) in flightList.data.bookings" v-bind:value="index">{{flight.flightNo}}</option>
-    </select>
-    <flight-info :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-info>
-    <flight-msg :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-msg>
-  </div> -->
   </div>
 </template>
 
@@ -202,12 +194,6 @@ footer {
   </div>
 </template>
 <div id="app">
- <!--  <app-nav>
-  </app-nav>
-  <main-container>
-  </main-container>
-  <router-link to="/dashboard">Go to dashboard</router-link>
-   <router-link to="/login">Go to Login</router-link> -->
   <router-view></router-view>
 </div>
 
