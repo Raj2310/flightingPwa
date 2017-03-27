@@ -1,17 +1,17 @@
 var navbar=Vue.component('app-nav',{
-	template:`<!--Navigation-->
-<div class="band navigation">
-    <nav class="container primary">
-        <div class="sixteen columns">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>`
+    props:['username'],
+  data:function(){
+    return {
+    }
+  },
+	template:"#navbar-template",
+  methods:{
+      logoutAttempt(){
+        localStorage.removeItem("authKey");
+        //console.log("After deletion",localStorage.authKey);
+        router.go('/login')
+      }  
+  }
 });
 var mainContainer=Vue.component('left-sidebar',{
 	data:function(){
@@ -47,7 +47,7 @@ var mainContainer=Vue.component('left-sidebar',{
     		router.go('/login')
     	}  
   	},
-	template:"#main-contenainer-template"
+	template:"#mainContainer-template"
 });
 var flightMessages=Vue.component(`flight-msg`,{
 	props:['flights','currentFlightIndex'],
@@ -102,7 +102,7 @@ const Login = {
     	checkLogin:function(){
     		if (localStorage.authKey) {
     			console.log("localStorage.authKey",localStorage.authKey);
-    			router.push('/dashboard');
+    			//router.push('/dashboard');
     		}else{
     			console.log("No")
     			//router.push('/dashboard');
@@ -110,13 +110,48 @@ const Login = {
     	}
   	} 
 }
+
+const Register=Vue.component(`register`,{
+	template:"#register-template",
+	created() {
+   		this.checkLogin()
+  	},
+	methods:{
+		registerAttempt:function(){
+			const email=$("#email_r").val();
+      		const password=$("#password_r").val();
+      		const name=$("#name_r").val();
+				$.get("https://krkfans.herokuapp.com/api/register/1staprilwtf/"+name+"/"+email+"/"+password, function(result){
+        		if(result.status){
+        			localStorage.setItem("authKey", result.authKey);
+        			console.log(result);
+        			//router.push('/dashboard')
+        		}else{	
+        			alert("Sorry could not register");
+        		}
+    		});
+		}
+	},
+    	checkLogin:function(){
+    		if (localStorage.authKey) {
+    			console.log("localStorage.authKey",localStorage.authKey);
+    			//router.push('/dashboard');
+    		}else{
+    			console.log("No")
+    			//router.push('/dashboard');
+    		}
+    	}
+});
+
 const routes = [
   { path: '/dashboard', component: mainContainer },
-  { path: '/login', component: Login }
+  { path: '/login', component: Login },
+  { path:'/register',component:Register}
 ]
 const router = new VueRouter({
   routes // short for routes: routes
 });
+router.replace('/dashboard')
 var app = new Vue({
   router
 }).$mount('#app')

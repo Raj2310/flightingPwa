@@ -3,34 +3,124 @@
 <head>
 	<title>Flighting</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <style type="text/css">
+
+body {
+  background: #eee !important;  
+}
+
+.wrapper {  
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);  
+}
+  .form-signin-heading,
+  .checkbox {
+    margin-bottom: 30px;
+  }
+
+  .checkbox {
+    font-weight: normal;
+  }
+
+  .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    @include box-sizing(border-box);
+
+    &:focus {
+      z-index: 2;
+    }
+  }
+
+  input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+    </style>
 </head>
 <body>
-<template id="login-template">
-<div>    
-
-      <div class="form-group">
-      <input type="email" name="email" id="email">
-      <input type="password" name="password" id="password">
-    <button class="btn btn-success" v-on:click="loginAttempt">Login</button>
+<template id="navbar-template">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" >home</a>
       </div>
-</div>
 
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+        <li><a>{{username}}</a></li>
+          <li><a class="glyphicon glyphicon-user" aria-hidden="true"></a></li>
+          <li><a v-on:click="logoutAttempt">Logout</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+</template>
+<template id="login-template">
+  <div> 
+   <div class="wrapper">
+    <form class="form-signin">       
+      <h2 class="form-signin-heading">Please login</h2>
+      <input type="email" name="email" id="email" class="form-control"  placeholder="Email Address" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Password" id="password" required=""/>      
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <a class="btn btn-lg btn-primary btn-block" v-on:click="loginAttempt">Login</a>   
+       <router-link to="/register">Go to Register</router-link>
+    </form>
+   </div>
+  </div>
+</template>
+<template id="register-template">
+  <div>
+      <div class="form-group">
+        <input type="text" name="name_r" id="name_r">
+        <input type="email" name="email_r" id="email_r">
+        <input type="password" name="password_r" id="password_r">
+      <button class="btn btn-success" v-on:click="registerAttempt">Register</button>
+       <router-link to="/login">Go to Login</router-link>
+  </div>
+</template>
+<template id="mainContainer-template">
+<div>
+  <app-nav :username="flightList.data.user.name"></app-nav>
+  <!--   -->
+  </div>
 </template>
 <div id="app">
-<template id="main-contenainer-template">
-    <div><button v-on:click="logoutAttempt">Logout</button><select v-model="currentFlightIndex" >
-        <option v-for="(flight,index) in flightList.data.bookings" v-bind:value="index">{{flight.flightNo}}</option>
-        </select>
-        <flight-info :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-info>
-        <flight-msg :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-msg>
-    </div>
-</template>
  <!--  <app-nav>
   </app-nav>
   <main-container>
   </main-container> -->
-  <router-link to="/dashboard">Go to dashboard</router-link>
-   <router-link to="/login">Go to Login</router-link>
+ <!--  <router-link to="/dashboard">Go to dashboard</router-link>
+   <router-link to="/login">Go to Login</router-link> -->
   <router-view></router-view>
 </div>
 <script type="text/javascript" src="jquery.js"></script>
