@@ -53,7 +53,31 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+  /*------------------------------for dashboard------------------------------*/
 
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+  /*--------------------------------------------------------------------------*/
     </style>
 </head>
 <body>
@@ -109,26 +133,72 @@ body {
   </div>
 </template>
 <template id="mainContainer-template">
-<div>
+  <div>
   <app-nav :username="flightList.data.user.name"></app-nav>
-  <select v-model="currentFlightIndex" >
-  <option v-for="(flight,index) in flightList.data.bookings" v-bind:value="index">{{flight.flightNo}}</option>
+  <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <select v-model="currentFlightIndex" >
+                  <option v-for="(flight,index) in flightList.data.bookings" v-bind:value="index">{{flight.flightNo}}</option>
+                </select>
+            </div>
+            <div class="col-md-9">  
+               <flight-info :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-info>
+                <flight-msg :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-msg>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+  <!-- <div>
+    <app-nav :username="flightList.data.user.name"></app-nav>
+    <select v-model="currentFlightIndex" >
+      <option v-for="(flight,index) in flightList.data.bookings" v-bind:value="index">{{flight.flightNo}}</option>
     </select>
     <flight-info :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-info>
     <flight-msg :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-msg>
+  </div> -->
   </div>
 </template>
-<template id="flight-info-template">
-  <div>
-      <h2>start:{{flights[currentFlightIndex].sourceName}} end:{{flights[currentFlightIndex].destinationName}}</h2>
-  </div>
 
+
+<template id="flight-info-template">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Flight Number : {{flights[currentFlightIndex].flightNo}}</div>
+
+        <!-- List group -->
+        <ul class="list-group">
+          <li class="list-group-item">start:{{flights[currentFlightIndex].sourceName}}</li>
+          <li class="list-group-item">end:{{flights[currentFlightIndex].destinationName}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </template>
 <template id="flight-msg-template">
-  <div>
-    <ul>
-      <li v-for="msg in flights[currentFlightIndex].msg">{{msg}}</li>
-    </ul>
+  <div class="well">
+    <div class="row" v-for="msg in flights[currentFlightIndex].msg">
+      <div class="col-md-12">
+        <span class="pull-right">15 days ago</span>
+        <p>{{msg}}</p>
+      </div>
+    </div>
   </div>
 </template>
 <div id="app">

@@ -8,7 +8,6 @@ var navbar=Vue.component('app-nav',{
   methods:{
       logoutAttempt(){
         localStorage.removeItem("authKey");
-        //console.log("After deletion",localStorage.authKey);
         router.go('/login')
       }  
   }
@@ -38,7 +37,7 @@ var mainContainer=Vue.component('left-sidebar',{
 			    	console.log(error);
 				});
 	    	} else {
-	    		//router.go('/login')
+	    		router.replace('/login')
 	    	}
     	},
     	logoutAttempt(){
@@ -80,7 +79,7 @@ const Login = {
     	checkLogin:function(){
     		if (localStorage.authKey) {
     			console.log("localStorage.authKey",localStorage.authKey);
-    			//router.push('/dashboard');
+    			router.replace('/dashboard');
     		}else{
     			console.log("No")
     			//router.push('/dashboard');
