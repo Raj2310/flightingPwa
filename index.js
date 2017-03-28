@@ -1,5 +1,9 @@
 function saveBookingToLocal(bookingdata){
-  localStorage.bookingdata=bookingdata;
+  console.log(typeof bookingdata);
+  localStorage.bookingdata=JSON.stringify(bookingdata);
+    console.log(typeof localStorage.bookingdata);
+
+
 }
 
 
@@ -33,19 +37,23 @@ var mainContainer=Vue.component('left-sidebar',{
 	    	if (localStorage.authKey) {
 	    		 var self=this;
            if(localStorage.bookingdata){
-            console.log("now");
-            self.flightList=localStorage.bookingdata;
+            console.log(localStorage.bookingdata);
+            self.flightList=JSON.parse(localStorage.bookingdata);
            }
-				axios.get('https://krkfans.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
-				})
-			  	.then(function (response) {
-			  		console.log(response)
-			    	self.flightList=response;
-            saveBookingToLocal(response)
-				})
-			  	.catch(function (error) {
-			    	console.log(error);
-				});
+           try{
+				    axios.get('https://krkfans.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
+				    })
+			  	  .then(function (response) {
+			  		 console.log(response)
+			    	  self.flightList=response;
+              saveBookingToLocal(response)
+				      })
+			  	  .catch(function (error) {
+			    	  console.log(error);
+				  });
+          }catch(e){
+
+          }
 	    	} else {
 	    		router.replace('/login')
 	    	}
@@ -141,3 +149,9 @@ router.replace('/dashboard')
 var app = new Vue({
   router
 }).$mount('#app')
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('./service-worker.js')
+             .then(function() { console.log('Service Worker Registered'); });
+  }
