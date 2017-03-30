@@ -53,7 +53,14 @@ function subscribeUser() {
 
 function updateSubscriptionOnServer(subscription) {
   // TODO: Send subscription to application server
-  $("#abcd").html(JSON.stringify(subscription));
+   $.post("https://krkfans.herokuapp.com/api/push-subscribe", {authKey:localStorage.authKey,
+            subs: JSON.stringify(subscription)}, function(result){
+            if(result){
+            }else{  
+
+              alert("an error occurred");
+            }
+        });
   //alert(JSON.stringify(subscription));
 }
 
@@ -161,7 +168,9 @@ const Login = {
       		$.post("https://krkfans.herokuapp.com/api/login", {email:email,
 			    	password: password}, function(result){
         		if(result.status){
+              console.log("Chilla chilla kar",result);
         			localStorage.setItem("authKey", result.authKey);
+              localStorage.setItem("pub_not_key", result.pub_noti_token);
         			router.push('/dashboard')
         		}else{	
         			alert("Wrong email/password");
@@ -193,6 +202,7 @@ const Register=Vue.component(`register`,{
 				$.get("https://krkfans.herokuapp.com/api/register/1staprilwtf/"+name+"/"+email+"/"+password, function(result){
         		if(result.status){
         			localStorage.setItem("authKey", result.authKey);
+              localStorage.setItem("pub_not_key", result.pub_noti_token);
         			console.log(result);
         			//router.push('/dashboard')
         		}else{	
