@@ -1,6 +1,6 @@
 var cacheName = 'flighting-4';
 var filesToCache = [
-'/',
+/*'/',
 'index.html',
 'vue.js',
 'vue-router.js',
@@ -18,7 +18,7 @@ var filesToCache = [
 'fonts/glyphicons-halflings-regular.ttf',
 'fonts/glyphicons-halflings-regular.woff',
 'fonts/glyphicons-halflings-regular.woff2',
-'css/bootstrap.min.css'
+'css/bootstrap.min.css'*/
 
 ];
 
@@ -58,4 +58,18 @@ self.addEventListener('fetch', function(e) {
       return response || fetch(e.request);
     })
   );
+});
+
+self.addEventListener('push', function(event) {
+  console.log('[Service Worker] Push Received.');
+  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
+
+  const title = 'Push Codelab';
+  const options = {
+    body: 'Yay it works.',
+    icon: 'images/icon.png',
+    badge: 'images/badge.png'
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
 });

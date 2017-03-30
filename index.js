@@ -1,9 +1,75 @@
+const applicationServerPublicKey = 'BMD79y7gEnO5W97k5XDasjDp2VrZCSOgMC2PXt0-JbxT90kO8Kb5rQ_3RZXcEesqBUJT8xT6n1GWb-FDbq_XA7o';
+var swRegistration;
+var isSubscribed = false;
+if ('serviceWorker' in navigator && 'PushManager' in window) {
+    navigator.serviceWorker
+             .register('./service-worker.js')
+             .then(function(swReg) { 
+                console.log('Service Worker Registered');
+                swRegistration = swReg;
+                 initialiseUI(); 
+              })
+             .catch(function(error) {
+                console.error('Service Worker Error', error);
+              });
+  }else{
+    console.warn('Push messaging is not supported');
+}
 function saveBookingToLocal(bookingdata){
   console.log(typeof bookingdata);
   localStorage.bookingdata=JSON.stringify(bookingdata);
     console.log(typeof localStorage.bookingdata);
+}
 
+function initialiseUI() {
+  // Set the initial subscription value
+  swRegistration.pushManager.getSubscription()
+  .then(function(subscription) {
+    isSubscribed = !(subscription === null);
+    if (isSubscribed) {
+      console.log('User IS subscribed.');
+    } else {
+      console.log('User is NOT subscribed.');
+    }
+  });
+}
+function subscribeUser() {
+  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+  swRegistration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: applicationServerKey
+  })
+  .then(function(subscription) {
+    console.log('User is subscribed.');
 
+    updateSubscriptionOnServer(subscription);
+
+    isSubscribed = true;
+  })
+  .catch(function(err) {
+    console.log('Failed to subscribe the user: ', err);
+  });
+}
+
+function updateSubscriptionOnServer(subscription) {
+  // TODO: Send subscription to application server
+  $("#abcd").html(JSON.stringify(subscription));
+  //alert(JSON.stringify(subscription));
+}
+
+function urlB64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
 }
 
 
@@ -18,6 +84,13 @@ var navbar=Vue.component('app-nav',{
       logoutAttempt(){
         localStorage.removeItem("authKey");
         router.go('/login')
+      },
+      subsPushNotification(){
+        if (isSubscribed) {
+      // TODO: Unsubscribe user
+        } else {
+          subscribeUser();
+        }
       }  
   }
 });
@@ -25,7 +98,8 @@ var mainContainer=Vue.component('left-sidebar',{
 	data:function(){
 	return{
     	currentFlightIndex:0,
-    	flightList:{}
+    	flightList:{},
+      pushBtnDisplay:false
 		};
 	},
 	created() {
@@ -149,9 +223,3 @@ router.replace('/dashboard')
 var app = new Vue({
   router
 }).$mount('#app')
-
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('./service-worker.js')
-             .then(function() { console.log('Service Worker Registered'); });
-  }
