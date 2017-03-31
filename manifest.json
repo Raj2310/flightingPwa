@@ -2,8 +2,9 @@
   "name": "Weather",
   "short_name": "Flighting",
   "icons": [{
-    "src": "images/logo.jpg",
-      "type": "image/jpg"
+    "src": "images/logo.png",
+    "sizes": "256x256",
+      "type": "image/png"
     }],
   "start_url": "/",
   "display": "standalone",
