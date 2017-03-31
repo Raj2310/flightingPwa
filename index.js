@@ -61,7 +61,7 @@ function updateSubscriptionOnServer(subscription) {
               alert("an error occurred");
             }
         });
-  $("#abcd").html(JSON.stringify(subscription));
+  //$("#abcd").html(JSON.stringify(subscription));
 }
 
 function urlB64ToUint8Array(base64String) {
