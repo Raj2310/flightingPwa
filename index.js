@@ -56,12 +56,13 @@ function updateSubscriptionOnServer(subscription) {
    $.post("https://krkfans.herokuapp.com/api/push-subscribe", {authKey:localStorage.authKey,
             subs: JSON.stringify(subscription)}, function(result){
             if(result){
+              console.log("Push subscribed")
             }else{  
 
               alert("an error occurred");
             }
         });
-  //$("#abcd").html(JSON.stringify(subscription));
+  $("#abcd").html(JSON.stringify(subscription));
 }
 
 function urlB64ToUint8Array(base64String) {
@@ -93,11 +94,7 @@ var navbar=Vue.component('app-nav',{
         router.go('/login')
       },
       subsPushNotification(){
-        if (isSubscribed) {
-      // TODO: Unsubscribe user
-        } else {
           subscribeUser();
-        }
       }  
   }
 });
