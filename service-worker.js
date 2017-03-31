@@ -1,6 +1,6 @@
 var cacheName = 'flighting-4';
 var filesToCache = [
-/*'/',
+'/',
 'index.html',
 'vue.js',
 'vue-router.js',
@@ -18,7 +18,7 @@ var filesToCache = [
 'fonts/glyphicons-halflings-regular.ttf',
 'fonts/glyphicons-halflings-regular.woff',
 'fonts/glyphicons-halflings-regular.woff2',
-'css/bootstrap.min.css'*/
+'css/bootstrap.min.css'
 
 ];
 
