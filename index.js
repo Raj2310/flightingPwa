@@ -16,9 +16,7 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
     console.warn('Push messaging is not supported');
 }
 function saveBookingToLocal(bookingdata){
-  console.log(typeof bookingdata);
   localStorage.bookingdata=JSON.stringify(bookingdata);
-    console.log(typeof localStorage.bookingdata);
 }
 
 function initialiseUI() {
