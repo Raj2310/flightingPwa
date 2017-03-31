@@ -1,4 +1,4 @@
-const applicationServerPublicKey = 'BMD79y7gEnO5W97k5XDasjDp2VrZCSOgMC2PXt0-JbxT90kO8Kb5rQ_3RZXcEesqBUJT8xT6n1GWb-FDbq_XA7o';
+const applicationServerPublicKey = 'BNASTKuZMTWIM7lkZ30f_R4swIttSInEwIKdIAO8rmUoz8sAg51mR4a-Qn4Jm9Fs4_qmvDbKrSPHMWKXdmdXNfs';
 var swRegistration;
 var isSubscribed = false;
 if ('serviceWorker' in navigator && 'PushManager' in window) {
@@ -61,7 +61,7 @@ function updateSubscriptionOnServer(subscription) {
               alert("an error occurred");
             }
         });
-  //alert(JSON.stringify(subscription));
+  $("#abcd").html(JSON.stringify(subscription));
 }
 
 function urlB64ToUint8Array(base64String) {
