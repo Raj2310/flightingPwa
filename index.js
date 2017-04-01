@@ -176,6 +176,7 @@ const Login = {
     	},
     	checkLogin:function(){
     		if (localStorage.authKey) {
+          $("body").css("background-color","red");
     			console.log("localStorage.authKey",localStorage.authKey);
     			router.replace('/dashboard');
     		}else{
