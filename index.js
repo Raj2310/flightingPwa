@@ -60,7 +60,7 @@ function updateSubscriptionOnServer(subscription) {
               alert("an error occurred");
             }
         });
-  $("#abcd").html(JSON.stringify(subscription));
+/*  $("#abcd").html(JSON.stringify(subscription));*/
 }
 
 function urlB64ToUint8Array(base64String) {
@@ -83,6 +83,7 @@ var navbar=Vue.component('app-nav',{
     props:['username'],
   data:function(){
     return {
+      Subscribe:"Subscribe"
     }
   },
 	template:"#navbar-template",
@@ -92,6 +93,7 @@ var navbar=Vue.component('app-nav',{
         router.go('/login')
       },
       subsPushNotification(){
+        this.Subscribe==="Subscribe"?this.Subscribe="Unsubscribe":this.Subscribe="Subscribe";
           subscribeUser();
       }  
   }
