@@ -1,0 +1,34 @@
+
+.container{
+	background: white!important;
+}
+
+.selectsection{
+	padding-bottom: 30px;
+}
+
+.dashboard, .unorderedlist{
+	list-style-type: none;
+}
+
+.dashboard, .unorderedlist .item{
+}
+
+.notification h1{
+}
+
+.table1{
+	
+}
+
+.list-group-item{
+	color: black;
+}
+
+.navbar-inverse, .navbar-brand{
+	color: white!important;
+}
+.mynav > ul > li > a{
+color:white!important;
+
+}
