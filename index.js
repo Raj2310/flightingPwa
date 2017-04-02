@@ -227,7 +227,7 @@ const routes = [
 const router = new VueRouter({
   routes // short for routes: routes
 });
-router.replace('/dashboard')
+r/*outer.replace('/dashboard')*/
 var app = new Vue({
   router
 }).$mount('#app')
