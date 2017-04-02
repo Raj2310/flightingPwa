@@ -231,3 +231,7 @@ router.replace('/dashboard')
 var app = new Vue({
   router
 }).$mount('#app')
+Vue.filter('reverse', function(value) {
+  // slice to make a copy of array, then reverse the copy
+  return value.slice().reverse();
+});

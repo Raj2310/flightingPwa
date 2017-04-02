@@ -196,7 +196,7 @@ footer {
 </template>
 <template id="flight-msg-template" class="design1">
   <div class="well">
-    <div class="row" v-for="msg in flights[currentFlightIndex].msg">
+    <div class="row" v-for="msg in flights[currentFlightIndex].msg.slice().reverse()">
 		<div class="dashboard">
 			<ul class="list-group">
 				<li class="list-group-item">{{msg}}</li>
