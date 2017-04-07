@@ -134,6 +134,7 @@ footer {
         <input type="password" name="password_r" id="password_r">
       <button class="btn btn-success" v-on:click="registerAttempt">Register</button>
        <router-link to="/login">Go to Login</router-link>
+	  </div>
   </div>
 </template>
 <template id="mainContainer-template">
@@ -148,8 +149,6 @@ footer {
 			</div>
                <flight-info :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-info>
                 <flight-msg :flights="flightList.data.bookings" :current-flight-index="currentFlightIndex"></flight-msg>
-            </div>
-        </div>
     </div>
     <!-- /.container -->
     <div class="container">
