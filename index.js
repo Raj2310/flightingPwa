@@ -165,7 +165,6 @@ const Login = {
       		$.post("https://krkfans.herokuapp.com/api/login", {email:email,
 			    	password: password}, function(result){
         		if(result.status){
-              console.log("Chilla chilla kar",result);
         			localStorage.setItem("authKey", result.authKey);
               localStorage.setItem("pub_not_key", result.pub_noti_token);
         			router.push('/dashboard')
