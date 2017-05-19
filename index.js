@@ -18,7 +18,7 @@ var navbar=Vue.component('app-nav',{
       logoutAttempt(){
         localStorage.removeItem("authKey");
         router.go('/login')
-      }  
+      }
   }
 });
 var mainContainer=Vue.component('left-sidebar',{
@@ -41,7 +41,7 @@ var mainContainer=Vue.component('left-sidebar',{
             self.flightList=JSON.parse(localStorage.bookingdata);
            }
            try{
-				    axios.get('https://krkfans.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
+				    axios.get('https://udankhatola.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
 				    })
 			  	  .then(function (response) {
 			  		 console.log(response)
@@ -62,7 +62,7 @@ var mainContainer=Vue.component('left-sidebar',{
     		localStorage.removeItem("authKey");
     		console.log("After deletion",localStorage.authKey);
     		router.go('/login')
-    	}  
+    	}
   	},
 	template:"#mainContainer-template"
 });
@@ -75,7 +75,7 @@ var flightInfo=Vue.component(`flight-info`,{
 	template:"#flight-info-template"
 });
 
-const Login = { 
+const Login = {
 	template: '#login-template',
 	created() {
    		this.checkLogin()
@@ -84,12 +84,12 @@ const Login = {
     	loginAttempt: function () {
       		const email=$("#email").val();
       		const password=$("#password").val();
-      		$.post("https://krkfans.herokuapp.com/api/login", {email:email,
+      		$.post("https://udankhatola.herokuapp.com/api/login", {email:email,
 			    	password: password}, function(result){
         		if(result.status){
         			localStorage.setItem("authKey", result.authKey);
         			router.push('/dashboard')
-        		}else{	
+        		}else{
         			alert("Wrong email/password");
         		}
     		});
@@ -103,7 +103,7 @@ const Login = {
     			//router.push('/dashboard');
     		}
     	}
-  	} 
+  	}
 }
 
 const Register=Vue.component(`register`,{
@@ -116,12 +116,12 @@ const Register=Vue.component(`register`,{
 			const email=$("#email_r").val();
       		const password=$("#password_r").val();
       		const name=$("#name_r").val();
-				$.get("https://krkfans.herokuapp.com/api/register/1staprilwtf/"+name+"/"+email+"/"+password, function(result){
+				$.get("https://udankhatola.herokuapp.com/api/register/1staprilwtf/"+name+"/"+email+"/"+password, function(result){
         		if(result.status){
         			localStorage.setItem("authKey", result.authKey);
         			console.log(result);
         			//router.push('/dashboard')
-        		}else{	
+        		}else{
         			alert("Sorry could not register");
         		}
     		});
