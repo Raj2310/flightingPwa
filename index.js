@@ -4,10 +4,10 @@ var isSubscribed = false;
 if ('serviceWorker' in navigator && 'PushManager' in window) {
     navigator.serviceWorker
              .register('./service-worker.js')
-             .then(function(swReg) { 
+             .then(function(swReg) {
                 console.log('Service Worker Registered');
                 swRegistration = swReg;
-                 initialiseUI(); 
+                 initialiseUI();
               })
              .catch(function(error) {
                 console.error('Service Worker Error', error);
@@ -51,11 +51,11 @@ function subscribeUser() {
 
 function updateSubscriptionOnServer(subscription) {
   // TODO: Send subscription to application server
-   $.post("https://krkfans.herokuapp.com/api/push-subscribe", {authKey:localStorage.authKey,
+   $.post("https://udankhatola.herokuapp.com/api/push-subscribe", {authKey:localStorage.authKey,
             subs: JSON.stringify(subscription)}, function(result){
             if(result){
               console.log("Push subscribed")
-            }else{  
+            }else{
 
               alert("an error occurred");
             }
@@ -95,7 +95,7 @@ var navbar=Vue.component('app-nav',{
       subsPushNotification(){
         this.Subscribe==="Subscribe"?this.Subscribe="Unsubscribe":this.Subscribe="Subscribe";
           subscribeUser();
-      }  
+      }
   }
 });
 var mainContainer=Vue.component('left-sidebar',{
@@ -119,7 +119,7 @@ var mainContainer=Vue.component('left-sidebar',{
             self.flightList=JSON.parse(localStorage.bookingdata);
            }
            try{
-				    axios.get('https://krkfans.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
+				    axios.get('https://udankhatola.herokuapp.com/api/userFlightsInfo/'+localStorage.authKey, {
 				    })
 			  	  .then(function (response) {
 			  		 console.log(response)
@@ -140,7 +140,7 @@ var mainContainer=Vue.component('left-sidebar',{
     		localStorage.removeItem("authKey");
     		console.log("After deletion",localStorage.authKey);
     		router.go('/login')
-    	}  
+    	}
   	},
 	template:"#mainContainer-template"
 });
@@ -153,7 +153,7 @@ var flightInfo=Vue.component(`flight-info`,{
 	template:"#flight-info-template"
 });
 
-const Login = { 
+const Login = {
 	template: '#login-template',
 	created() {
    		this.checkLogin()
@@ -162,13 +162,13 @@ const Login = {
     	loginAttempt: function () {
       		const email=$("#email").val();
       		const password=$("#password").val();
-      		$.post("https://krkfans.herokuapp.com/api/login", {email:email,
+      		$.post("https://udankhatola.herokuapp.com/api/login", {email:email,
 			    	password: password}, function(result){
         		if(result.status){
         			localStorage.setItem("authKey", result.authKey);
               localStorage.setItem("pub_not_key", result.pub_noti_token);
         			router.push('/dashboard')
-        		}else{	
+        		}else{
         			alert("Wrong email/password");
         		}
     		});
@@ -183,7 +183,7 @@ const Login = {
     			//router.push('/dashboard');
     		}
     	}
-  	} 
+  	}
 }
 
 const Register=Vue.component(`register`,{
@@ -196,13 +196,13 @@ const Register=Vue.component(`register`,{
 			const email=$("#email_r").val();
       		const password=$("#password_r").val();
       		const name=$("#name_r").val();
-				$.get("https://krkfans.herokuapp.com/api/register/1staprilwtf/"+name+"/"+email+"/"+password, function(result){
+				$.get("https://udankhatola.herokuapp.com/api/register/1staprilwtf/"+name+"/"+email+"/"+password, function(result){
         		if(result.status){
         			localStorage.setItem("authKey", result.authKey);
               localStorage.setItem("pub_not_key", result.pub_noti_token);
         			console.log(result);
         			//router.push('/dashboard')
-        		}else{	
+        		}else{
         			alert("Sorry could not register");
         		}
     		});
