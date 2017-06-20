@@ -18,7 +18,14 @@ if ('serviceWorker' in navigator && 'PushManager' in window) {
 function saveBookingToLocal(bookingdata){
   localStorage.bookingdata=JSON.stringify(bookingdata);
 }
-
+function sendFlightMessage(flight_no,flight_day,flight_msg){
+  flight_day=flight_day.replace(/-/g,",")
+  $.post('http://localhost:5000/api/sendMessageToPassengers',{"flight":flight_no,"message":flight_msg,"date":flight_day},
+    function(result){
+      console.log(result);
+    }
+  )
+}
 function initialiseUI() {
   // Set the initial subscription value
   swRegistration.pushManager.getSubscription()
@@ -103,7 +110,10 @@ var mainContainer=Vue.component('left-sidebar',{
 	return{
     	currentFlightIndex:0,
     	flightList:{},
-      pushBtnDisplay:false
+      pushBtnDisplay:false,
+      flight_day:null,
+      flight_no:null,
+      flight_msg:null 
 		};
 	},
 	created() {
@@ -136,6 +146,9 @@ var mainContainer=Vue.component('left-sidebar',{
 	    		router.replace('/login')
 	    	}
     	},
+      sendAQuery(){
+        sendFlightMessage(this.flight_no,this.flight_day,this.flight_msg);
+      },
     	logoutAttempt(){
     		localStorage.removeItem("authKey");
     		console.log("After deletion",localStorage.authKey);

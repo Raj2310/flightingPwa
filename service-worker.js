@@ -1,5 +1,5 @@
 var cacheName = 'flighting-4';
-var filesToCache = [
+var filesToCache = [/*
 '/',
 'index.html',
 'vue.js',
@@ -20,7 +20,7 @@ var filesToCache = [
 'fonts/glyphicons-halflings-regular.woff2',
 'css/bootstrap.min.css',
 'manifest.json'
-
+*/
 ];
 
 self.addEventListener('install', function(e) {
