@@ -9,10 +9,10 @@
     <style type="text/css">
 
 body {
-  background: white;  
+  background: white;
 }
 
-.wrapper {  
+.wrapper {
   margin-top: 80px;
   margin-bottom: 80px;
 }
@@ -22,7 +22,7 @@ body {
   padding: 15px 35px 45px;
   margin: 0 auto;
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);  
+  border: 1px solid rgba(0,0,0,0.1);
 }
   .form-signin-heading,
   .checkbox {
@@ -107,7 +107,7 @@ footer {
           <li><a class="glyphicon glyphicon-user" aria-hidden="true"></a></li>
           <li><a v-on:click="logoutAttempt" style="color:white!important">Logout</a></li>
 					<li>
-						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+						<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">send a push</button>
 					</li>
         </ul>
       </div><!-- /.navbar-collapse -->
@@ -115,16 +115,16 @@ footer {
   </nav>
 </template>
 <template id="login-template">
-  <div> 
+  <div>
    <div class="wrapper">
-    <form class="form-signin">       
+    <form class="form-signin">
       <h2 class="form-signin-heading">Please login</h2>
       <input type="email" name="email" id="email" class="form-control"  placeholder="Email Address" required="" autofocus="" />
-      <input type="password" class="form-control" name="password" placeholder="Password" id="password" required=""/>      
+      <input type="password" class="form-control" name="password" placeholder="Password" id="password" required=""/>
       <label class="checkbox">
         <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
       </label>
-      <a class="btn btn-lg btn-primary btn-block" v-on:click="loginAttempt">Login</a>   
+      <a class="btn btn-lg btn-primary btn-block" v-on:click="loginAttempt">Login</a>
        <router-link to="/register">Go to Register</router-link>
     </form>
    </div>
@@ -147,7 +147,7 @@ footer {
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
-	
+
 	    <!-- Modal content-->
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -158,15 +158,15 @@ footer {
 	        <div class="col-md-4">
 						<div class="form-group">
 						  <label for="flightNo">FlightNo</label>
-						  <input type="text" class="form-control" id="flightNo" v-model="flight_no">
+						  <input type="text" class="form-control" id="flightNo" value="595612" v-model="flight_no">
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
 						  <label for="flightDate">Flight Date</label>
-						  <input type="date" class="form-control" id="flightDate" v-model="flight_day">
+						  <input type="date" class="form-control" id="flightDate" value="2017-05-25" v-model="flight_day">
 						</div>
-						
+
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
@@ -180,7 +180,7 @@ footer {
 	        <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
-	
+
 	  </div>
 	</div>
   <div class="container">

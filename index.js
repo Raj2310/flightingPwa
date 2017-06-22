@@ -20,7 +20,7 @@ function saveBookingToLocal(bookingdata){
 }
 function sendFlightMessage(flight_no,flight_day,flight_msg){
   flight_day=flight_day.replace(/-/g,",")
-  $.post('http://localhost:5000/api/sendMessageToPassengers',{"flight":flight_no,"message":flight_msg,"date":flight_day},
+  $.post('http://udankhatola.herokuapp.com/api/sendMessageToPassengers',{"flight":flight_no,"message":flight_msg,"date":flight_day},
     function(result){
       console.log(result);
     }
@@ -111,9 +111,9 @@ var mainContainer=Vue.component('left-sidebar',{
     	currentFlightIndex:0,
     	flightList:{},
       pushBtnDisplay:false,
-      flight_day:null,
-      flight_no:null,
-      flight_msg:null 
+      flight_day:"2017-05-25",
+      flight_no:"595612",
+      flight_msg:null
 		};
 	},
 	created() {

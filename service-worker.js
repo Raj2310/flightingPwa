@@ -1,5 +1,5 @@
 var cacheName = 'flighting-4';
-var filesToCache = [/*
+var filesToCache = [
 '/',
 'index.html',
 'vue.js',
@@ -20,7 +20,7 @@ var filesToCache = [/*
 'fonts/glyphicons-halflings-regular.woff2',
 'css/bootstrap.min.css',
 'manifest.json'
-*/
+
 ];
 
 self.addEventListener('install', function(e) {
@@ -53,9 +53,9 @@ self.addEventListener('fetch', function(e) {
     	if(response){
 	console.log("response from inside",response)
     	}else{
-    		console.log("unable to fetch from inside",e.request)	
+    		console.log("unable to fetch from inside",e.request)
     	}
-    
+
       return response || fetch(e.request);
     })
   );
