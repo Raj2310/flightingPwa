@@ -20,7 +20,7 @@ function saveBookingToLocal(bookingdata){
 }
 function sendFlightMessage(flight_no,flight_day,flight_msg){
   flight_day=flight_day.replace(/-/g,",")
-  $.post('http://udankhatola.herokuapp.com/api/sendMessageToPassengers',{"flight":flight_no,"message":flight_msg,"date":flight_day},
+  $.post('https://udankhatola.herokuapp.com/api/sendMessageToPassengers',{"flight":flight_no,"message":flight_msg,"date":flight_day},
     function(result){
       console.log(result);
     }
