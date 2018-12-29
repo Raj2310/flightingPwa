@@ -120,7 +120,7 @@ const Register=Vue.component(`register`,{
         		if(result.status){
         			localStorage.setItem("authKey", result.authKey);
         			console.log(result);
-        			//router.push('/dashboard')
+        			router.push('/dashboard')
         		}else{
         			alert("Sorry could not register");
         		}
